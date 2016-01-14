@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="es">
+
+	<head>
+        <meta charset="UTF-8">
+
+		<title>Python and web technologies</title>
+
+		<meta name="description" content="Introduction given in Python Madrid Meetup">
+		<meta name="author" content="Yamila Moreno">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>Python and web technologies</h1>
+                </section>
+
+                <section>
+                    <h1>Hello</h1>
+					<p>
+                        <ul class="fragment">
+                            <li>Yamila Moreno</li>
+                            <li>Blog: <a href="http://moduslaborandi.net" target="_blank">http://moduslaborandi.net</a></li>
+                            <li>Twitter: <a href="http://twitter.com/yamila_moreno" target="_blank">@yamila_moreno</a></li>
+                            <li>Github: <a href="http://github.com/yamila-moreno" target="_blank">yamila-moreno</a></li>
+                            <li><a href="http://ttparo.es" target="_blank">http://ttparo.es</a></li>
+                            <li><a href="http://twitter.com/pyladies_es" target="_new">@Pyladies_ES</a></li>
+                            <li><a href="http://twitter.com/DjangogirlsES" target="_new">@DjangoGirlsES</a></li>
+                            <li>Kaleidos: <a href="http://kaleidos.net" target="_new">http://kaleidos.net</a></li>
+                        </ul>
+					</p>
+				</section>
+
+				<section>
+					<h2>Python as a general purpose language</h2>
+                    <ul class="fragment">
+                        <li>POO and functional</li>
+                        <li>Scripting</li>
+                        <li>Security</li>
+                        <li>Scientific python</li>
+                        <li>Big data</li>
+                        <li>Teaching tool</li>
+                        <li>"Glue" for several pieces</li>
+                        <li class="fragment">Web</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Python and web</h2>
+                    <p>Web = Backend and Frontend</p>
+                    <ul>
+                        <li>Frontend - Javascript undisputed leader</li>
+                        <li>Frontend - fullstack languages (Clojure*, NodeJS)</li>
+                        <li>Frontend - Python? (http://www.brython.info/)</li>
+                    </ul>
+                    <p class="fragment">Python and web so far means only <em>backend</em>. Python needs more technologies in the front side to build webs: javascript, backbone, angular, react...</p>
+                </section>
+
+                <section>
+                    <h2>Python and web</h2>
+                    <p>Basic concept: <em>wsgi</em> (PEP-0033)</p>
+                    <p>Python and backend</p>
+                    <ul>
+                        <li>Libraries and utilities</li>
+                        <li>Frameworks</li>
+                        <li>Platforms</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Libraries and utilities</h2>
+                    <ul class="fragment">
+                        <li>Requests: HTTP library "for human beings" (http://docs.python-requests.org/en/latest/)</li>
+                        <li>Gunicorn: Python app server (http://gunicorn.org/)</li>
+                        <li>Werkzeug: WSGI utility library (http://werkzeug.pocoo.org/)</li>
+                        <li>Twisted: library to build asynchronous web applications (https://twistedmatrix.com/trac/)</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Frameworks</h2>
+                    <p>On top of libraries and utilities</p>
+                    <p><em>Web framework</em> is a set of utilities with inner consistency which provide a simple way to solve common issues in web development: authentication, bbdd access, template rendering, request and response management, sessions...</p>
+                    <p>A web framework it's the tool and the opinion and good practices around</p>
+                </section>
+
+                <section>
+                    <h2>Platforms</h2>
+                    <p>Business on top of a framework</p>
+                    <ul>
+                        <li>PuPut (https://github.com/APSL/puput)</li>
+                        <li>Django-CMS (http://www.django-cms.org/en/)</li>
+                        <li>Symposion (https://github.com/pinax/symposion)</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Frameworks - BottlePy</h2>
+                    <p>http://bottlepy.org/docs/dev/index.html</p>
+                    <p><strong>Is</strong>: a microframework whose potential resides in fast prototyping and small websites</p>
+                    <p><strong>Is not</strong>: the tool for big applications</p>
+                    <p><strong>Has</strong>: Routing, Templates, Utilities (forms, file uploads, cookies, headers...), Server (wsgi)</p>
+                    <p>Who: ?</p>
+                </section>
+
+                <section>
+                    <h2>Frameworks - BottlePy</h2>
+                    <p>Hello world</li>
+<pre><code class="hljs" data-trim contenteditable>
+from bottle import route, run, template
+
+@route("/hello/<name>")
+def index(name):
+    return template("<b>Hello {{name}}</b>!", name=name)
+
+run(host="localhost", port=8080)
+</code></pre>
+http://localhost:8080/hello/world
+                </section>
+
+                <section>
+                    <h2>Frameworks - Flask</h2>
+                    <p>http://flask.pocoo.org/</p>
+                    <p><strong>Is</strong>: a microframework running over Werkzeug, with Jinja templates "and good intentions". Perfect to start with Python and web.</p>
+                    <p><strong>Is not</strong>: a complex tool for big applications</p>
+                    <p><strong>Has</strong>: built in development server and debugger, unit testing support, RESTful, Jinja2 templating, support for secure cookies, 100% WSGI 1.0 compliant, extensively documented</p>
+                    <p><strong>Who</strong>: http://flask.pocoo.org/community/poweredby/ (Dominion clone!!)</p>
+                </section>
+
+                <section>
+                    <h2>Frameworks - Flask</h2>
+                    <p>Hello world</li>
+<pre><code class="hljs" data-trim contenteditable>
+from flask import Flask
+app = Flask(__name__)
+
+@app.route("/")
+def hello():
+    return "Hello World!"
+
+if __name__ == "__main__":
+    app.run()
+</code></pre>
+http://localhost:5000/
+                </section>
+
+                <section>
+                    <h2>Frameworks - Pyramid</h2>
+                    <p>http://www.pylonsproject.org/</p>
+                    <p><strong>Is</strong>: component ecosystem, with Pyramid as web fw. Small core unopinionated.</p>
+                    <p><strong>Is not</strong>: compete with Django but is not as mature as Django</p>
+                    <p><strong>Has</strong>: <a href="http://docs.pylonsproject.org/projects/pyramid/en/latest/narr/introduction.html#what-makes-pyramid-unique" target="_new">fast prototyping, decorators based configuration, routing, debugger, add-ons...</a></p>
+                    <p><strong>Who</strong>: Reddit, Mozilla (http://www.quora.com/Who-uses-the-Pyramid-framework-for-web-applications-And-how)</p>
+                </section>
+
+                <section>
+                    <h2>Frameworks - Pyramid</h2>
+                    <p>Hello world</li>
+<pre><code class="hljs" data-trim contenteditable>
+from wsgiref.simple_server import make_server
+from pyramid.config import Configurator
+from pyramid.response import Response
+
+
+def hello_world(request):
+    return Response('Hello %(name)s!' % request.matchdict)
+
+if __name__ == '__main__':
+    config = Configurator()
+    config.add_route('hello', '/hello/{name}')
+    config.add_view(hello_world, route_name='hello')
+    app = config.make_wsgi_app()
+    server = make_server('0.0.0.0', 8080, app)
+    server.serve_forever()
+</code></pre>
+http://localhost:8080/
+                </section>
+
+                <section>
+                    <h2>Frameworks - Django</h2>
+                    <p>https://www.djangoproject.com/</p>
+                    <p><strong>Is</strong>: the reference tool for web development with Python</p>
+                    <p><strong>Is not</strong>: free of strong opinion; famous for front integration</p>
+                    <p><strong>Has</strong>: everything, built-in or libraries (DRF)</p>
+                    <p><strong>Who</strong>: Guía Repsol, Disqus, Pinterest... (http://codecondo.com/popular-websites-django/)</p>
+                </section>
+
+                <section>
+                    <h2>Extra - Beyond the framework</h2>
+                    <p>Anillo (https://github.com/jespino/anillo)</p>
+                </section>
+
+				<section>
+                    <h2>Questions</h2>
+                </section>
+
+
+                <section data-background="static/thankyou.gif">
+                </section>
+			</div>
+
+		</div>
+
+        <footer>
+            <div style="">
+            @yamila_moreno
+            </div>
+        </footer>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
